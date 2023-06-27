@@ -21,9 +21,6 @@
 
 package com.lcof.leetcode.editor.cn;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class ShuZuZhongZhongFuDeShuZiLcof {
     public static void main(String[] args) {
         Solution solution = new ShuZuZhongZhongFuDeShuZiLcof().new Solution();
@@ -32,12 +29,19 @@ public class ShuZuZhongZhongFuDeShuZiLcof {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int findRepeatNumber(int[] nums) {
-            Set<Integer> dic = new HashSet<>();
-            for (int num : nums) {
-                if (dic.contains(num)) {
-                    return num;
+            int i = 0;
+            while (i < nums.length) {
+                if (nums[i] == i) {
+                    i++;
+                    continue;
+                }
+                // 索引i处的值与索引num[i]处的值相等，则返回，否则交换
+                if (nums[nums[i]] == nums[i]) {
+                    return nums[i];
                 } else {
-                    dic.add(num);
+                    int tmp = nums[i];
+                    nums[i] = nums[tmp];
+                    nums[tmp] = tmp;
                 }
             }
             return -1;
