@@ -13,7 +13,7 @@ Q${question.frontendQuestionId}$!velocityTool.camelCaseName(${question.titleSlug
 ${question.content}
 
 package com.leetcode.editor.cn;
-public class Q${question.frontendQuestionId}$!velocityTool.camelCaseName(${question.titleSlug}){
+public class Q${question.frontendQuestionId}$!velocityTool.camelCaseName(${question.titleSlug}) {
     public static void main(String[] args) {
         Solution solution = new Q${question.frontendQuestionId}$!velocityTool.camelCaseName(${question.titleSlug})().new Solution();
     }
@@ -32,7 +32,7 @@ $!velocityTool.camelCaseName(${question.titleSlug})
 ${question.content}
 
 package com.lcof.leetcode.editor.cn;
-public class $!velocityTool.camelCaseName(${question.titleSlug}){
+public class $!velocityTool.camelCaseName(${question.titleSlug}) {
     public static void main(String[] args) {
         Solution solution = new $!velocityTool.camelCaseName(${question.titleSlug})().new Solution();
     }
@@ -50,7 +50,7 @@ $!velocityTool.camelCaseName(${question.titleSlug})
 ${question.content}
 
 package com.lcci.leetcode.editor.cn;
-public class $!velocityTool.camelCaseName(${question.titleSlug}){
+public class $!velocityTool.camelCaseName(${question.titleSlug}) {
     public static void main(String[] args) {
         Solution solution = new $!velocityTool.camelCaseName(${question.titleSlug})().new Solution();
     }
