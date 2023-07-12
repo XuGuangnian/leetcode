@@ -47,9 +47,19 @@
 
 
 package com.leetcode.editor.cn;
+
+import java.util.PriorityQueue;
+
 public class Q23MergeKSortedLists{
     public static void main(String[] args) {
         Solution solution = new Q23MergeKSortedLists().new Solution();
+        ListNode[] lists = new ListNode[3];
+        lists[0] = new ListNode(1, new ListNode(4, new ListNode(5, null)));
+        lists[1] = new ListNode(1, new ListNode(3, new ListNode(4, null)));
+        lists[2] = new ListNode(2, new ListNode(6, null));
+    
+        ListNode listNode = solution.mergeKLists(lists);
+        System.out.println(listNode);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -63,45 +73,42 @@ public class Q23MergeKSortedLists{
  * }
  */
 class Solution {
+    PriorityQueue<Status> queue = new PriorityQueue<>();
+    
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists.length == 0) {
-            return null;
-        }
-        return split(lists, 0, lists.length - 1);
-    }
-
-    private ListNode split(ListNode[] lists, int i, int j) {
-        if (i == j) {
-            return lists[i];
-        }
-        int m = (i + j) >>> 1;
-        ListNode left = split(lists, i, m);
-        ListNode right = split(lists, m + 1, j);
-        return mergeTwoLists(left, right);
-    }
-
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode s = new ListNode(-1, null);
-        ListNode p = s;
-        ListNode p1 = list1;
-        ListNode p2 = list2;
-        while (p1 != null && p2 != null) {
-            if (p1.val < p2.val) {
-                p.next = p1;
-                p1 = p1.next;
-            } else {
-                p.next = p2;
-                p2 = p2.next;
+        
+        for (ListNode node : lists) {
+            if (node != null) {
+                queue.offer(new Status(node.val, node));
             }
-            p = p.next;
         }
-        if (p1 != null) {
-            p.next = p1;
+        
+        ListNode head = new ListNode();
+        ListNode tail = head;
+        while (!queue.isEmpty()) {
+            Status f = queue.poll(); // 多链表中最小头节点
+            tail.next = f.ptr; // 尾结点指向最小节点
+            tail = tail.next; // 更新尾结点
+            if (f.ptr.next != null) {
+                queue.offer(new Status(f.ptr.next.val, f.ptr.next));
+            }
         }
-        if (p2 != null) {
-            p.next = p2;
+        return head.next;
+    }
+    
+    class Status implements Comparable<Status> {
+        int val;
+        ListNode ptr;
+        
+        public Status(int val, ListNode ptr) {
+            this.val = val;
+            this.ptr = ptr;
         }
-        return s.next;
+        
+        @Override
+        public int compareTo(Status status2) {
+            return this.val - status2.val;
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
