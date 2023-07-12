@@ -57,7 +57,7 @@
 
 package com.leetcode.editor.cn;
 
-import java.util.ArrayDeque;
+import java.util.LinkedList;
 
 public class Q225ImplementStackUsingQueues {
     public static void main(String[] args) {
@@ -75,7 +75,7 @@ class MyStack {
      * a
      * a    b
      */
-    ArrayDeque<Integer> queue = new ArrayDeque<>();
+    LinkedList<Integer> queue = new LinkedList<>();
 
     public MyStack() {
 
