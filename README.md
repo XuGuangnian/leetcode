@@ -17,7 +17,7 @@ public class Q${question.frontendQuestionId}$!velocityTool.camelCaseName(${quest
     public static void main(String[] args) {
         Solution solution = new Q${question.frontendQuestionId}$!velocityTool.camelCaseName(${question.titleSlug})().new Solution();
     }
-    ${question.code}
+${question.code}
 }
 ```
 ### LCOF(剑指 offer) 配置
